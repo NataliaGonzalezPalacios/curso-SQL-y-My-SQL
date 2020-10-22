@@ -1,0 +1,8 @@
+## Para conectarse
+mysql -u root -h localhost -p
+## Mira bases de datos
+show databases; 
+use sakila; ##(nombre de la base de datos)
+system cls ## Para limpiar la consola
+show tables; ## ver las tablas que componen la base de datos
+select database(); ## es una función para saber en que database estoy ubicado 
