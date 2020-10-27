@@ -11,10 +11,48 @@ create database nombredelabasededatos;
 create database if not exists nombredelabasededatos; ## Si la base de datos ya existe no te arroja error sino un warning que te avisa que algo no salio bien
 show warnings; ## Para mirar los warning que se generaron 
 Creando una tabla 
-create table if not exists books(¬book_id interger primary auto_increment,author, ¬title varchar(100) not null,¬ year interger unsigned not null default 1900,¬ language varchar(2) not null default 'es' comment 'ISO 639-1 Language',¬ cover_url varchar(500),¬price double(6,2) not null default 10.0,¬sellable tinyint(1)default 1,¬ copies interger not null default 1,¬description text¬);
-## Me da error esperar las siguientes clases para solucionarlo 
 
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '¬book_id interger primary auto_increment,author, ¬title varchar(100) not null,' at line 1
+create table if not exists books(book_id integer unsigned primary key auto_increment,
+author_id integer unsigned, 
+title varchar(100)not null,
+year integer unsigned not null default 1900,
+lenguage varchar(2) not null default 'es' comment 'ISO 639-1 Language',
+cover_url varchar(500),
+price double(6,2) not null default 10.0,
+sellable tinyint (1) default 1, 
+copies integer not null default 1,
+description text);
+
+create table if not exists authors(author_id integer unsigned primary key auto_increment,
+name varchar (100) not null,
+nationality varchar(3)
+);
+
+create table clients (
+client_id integer unsigned primary key auto_increment,
+`name` varchar(50) not null, 
+email varchar (100) not null unique,
+birthdate datetime, 
+gender enum('M','F', 'ND') not null, 
+active tinyint(1) not null default 1,
+create_at timestamp not null default current_timestamp,
+update_at timestamp not null default current_timestamp on update current_timestamp);
+
+##para mirar las tablas 
+desc nombre de la tabla;
+
+enum ## Para decirle que ese campo solo puedo tomar ciertos valores
+
+create table if not exists operations(
+    operation_id integer unsigned primary key auto_increment,
+    book_id integer unsigned,
+    client_id integer unsigned,
+    `type` enum('R', 'V', 'D') not null, 
+    create_at timestamp not null default current_timestamp, 
+    update_at timestamp not null default current_timestamp on update current_timestamp, 
+    finshed tinyint (1) not null
+);
+
 
 
 
