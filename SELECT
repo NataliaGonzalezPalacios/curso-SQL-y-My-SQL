@@ -1,0 +1,29 @@
+desc clients; 
+
+## Te da una descripcion de como esta compuesta la tabla 
+
+select * from clients; 
+
+select name from clients; 
+
+select name, email, gender from clients; 
+
+select name, email, gender from clients limit 10;  ## Me trae solo 10 lineas aleatorias 
+
+select name, email, gender  from clients where gender = 'M';  
+
+select year(birthdate) from clients;
+
+select now(); 
+
+select year(now());
+
+select name, birthdate , year (now()) - year(birthdate) from clients limit 10;  ## Se puede por ejemplo calcular la edad de una persona 
+
+Like es una función de cercania de textos 
+
+select * from clients where name like '%Saave%'; ## Busca alguien que tenga en el nombre saave
+
+select name, email, year(now()) - year (birthdate) as edad, gender from clients where gender = 'F' and name like '%Lop%'; Puedes dar alias a las columnas por ejemplo as edad and para crear varios filtros
+
+
