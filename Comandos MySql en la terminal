@@ -55,5 +55,6 @@ create table if not exists operations(
 
 
 select * from authors;
-
+select * from clients where client_id = 1\G para consultar un registro de una tabla en la terminal de forma mas organizada 
+    
 
