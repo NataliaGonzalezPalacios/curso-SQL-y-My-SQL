@@ -1,0 +1,5 @@
+insert into clients (name, email, birthdate, gender, active) values
+('Pedro Sanchez', 'Pedro.78522059J@random.names', '1992-01-31', 'M',1)
+on duplicate key update active = values (active);
+
+## Te permite cambiar los datos de un registro de una tabla cuando es el mismo dato y posterior cuando craste la tabla  colocaste un unique 
