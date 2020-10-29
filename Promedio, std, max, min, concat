@@ -1,0 +1,68 @@
+select distinct nationality from authors; ## Trae los valores unicos de una columna 
+
+select nationality, count(author_id) as c_authors from authors group by nationality order by c_authors desc;
+
+select nationality, count(author_id) as c_authors from authors group by nationality order by c_authors desc, nationality asc; ordena por dos columnas 
+
+
+select nationality, count(author_id) as c_authors 
+from authors 
+where nationality is not null and nationality not in ('RUS', 'USA')
+group by nationality order by c_authors desc, nationality asc;
+
+
+
+select nationality, count(author_id) as c_authors 
+from authors 
+where nationality is not null and nationality  in ('RUS', 'USA')
+group by nationality order by c_authors desc, nationality asc;
+
+
+Cual es el precio o desviación estandar del precio 
+
+select nationality, avg(price) as prom, 
+stddev(price) as std 
+from books as b 
+join authors as a
+on a.author_id = b.author_id
+where b.price is not null
+group by nationality;
+
+
+select nationality, count(book_id) as libros, avg(price) as prom, 
+stddev(price) as std 
+from books as b 
+join authors as a
+on a.author_id = b.author_id
+where b.price is not null
+group by nationality order by libros desc;
+
+Cual es el precio maxim y minimo de un libro 
+
+select nationality, max(price), min(price) 
+from books as b
+join authors as a
+on a.author_id = b.author_id
+group by nationality;
+
+
+
+select c.name, t.type ,b.title, a.name, a.nationality 
+from transactions as t 
+left join clients as c
+on c.client_id = t.client_id
+left join books as b
+on b.book_id = t.book_id
+left join authors as a 
+on b.author_id = a.author_id;
+
+CONCAT
+select c.name, t.type ,b.title, a.name, 
+concat(a.name, "(", a.nationality ,")") as autor 
+from transactions as t 
+left join clients as c
+on c.client_id = t.client_id
+left join books as b
+on b.book_id = t.book_id
+left join authors as a 
+on b.author_id = a.author_id;
