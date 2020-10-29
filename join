@@ -1,0 +1,91 @@
+select b.book_id, a.name, b.title from books as b
+join authors as a
+on a.author_id = b.author_id
+
+where a.author_id between 1 and 5;
+
+
+select c.name, b.title, t.type from transactions as t 
+join books as b 
+on t.book_id = b.book_id
+join clients as c 
+on t.client_id = c.client_id;
+
+select c.name, b.title, t.type from transactions as t 
+join books as b 
+on t.book_id = b.book_id
+join clients as c 
+on t.client_id = c.client_id
+where c.gender = 'F' and  t.type = 'sell';
+
+select c.name, b.title,a.name, t.type from transactions as t 
+join books as b 
+on t.book_id = b.book_id
+join clients as c 
+on t.client_id = c.client_id
+join authors as a
+on b.author_id = a.author_id
+where c.gender = 'F' and  t.type = 'sell';
+
+
+select c.name, b.title,a.name, t.type from transactions as t 
+join books as b 
+on t.book_id = b.book_id
+join clients as c 
+on t.client_id = c.client_id
+join authors as a
+on b.author_id = a.author_id
+where c.gender = 'M' and  t.type in ('sell', 'lend');
+
+select b.title , a.name
+from  authors as a , books as b
+where a.author_id = b.author_id
+limit 10;
+ESTAS DOS SON LO MISMO 
+
+select b.title, a.name 
+from books as b
+inner join  authors as a 
+on a.author_id = b.author_id
+limit 10; 
+ORDER BY 
+
+select a.author_id, a.name, a.nationality, b.title
+from authors as a
+join books as b 
+on b.author_id = a.author_id
+where b.author_id between 1 and 5
+order by a.author_id desc;
+
+select a.author_id, a.name, a.nationality, b.title
+from authors as a
+left join books as b 
+on b.author_id = a.author_id
+where a.author_id between 1 and 5
+order by a.author_id;
+GROUPBY COUNT
+select a.author_id, a.name, a.nationality, count(b.book_id)
+from authors as a
+left join books as b 
+on b.author_id = a.author_id
+where a.author_id between 1 and 5
+group by a.author_id
+order by a.author_id;
+
+SELECT <columna_1> , <columna_2>,  <columna_3> ... <columna_n>
+FROM Tabla_A A
+FULL OUTER JOIN Tabla_B B
+ON A.pk = B.pk
+
+SELECT <columna_1> , <columna_2>,  <columna_3> ... <columna_n>
+FROM Tabla_A A
+LEFT JOIN Tabla_B B
+ON A.pk = B.pk
+WHERE B.pk IS NULL
+
+
+SELECT <select_list>
+FROM Table_A A
+FULL OUTER JOIN Table_B B
+ON A.Key = B.Key
+WHERE A.Key IS NULL OR B.Key IS NULL
