@@ -1,0 +1,45 @@
+DELETE
+## Borrar un registro de una tabla 
+
+
+delete from authors where author_id = 161;
+
+
+delete from authors where author_id = 161 limit 1;
+
+El limit es para asegurarme de no borrar mas de 1 para que no te borre toda la tabla 
+
+UPDDATE Sirve para acrualizar valores de las tablas 
+
+update clients set active = 0 where client_id = 80 limit 1;
+
+Para vaciar la tabla trancate 
+
+select count(book_id) from books;
+
+select sum(price) from books where selleable =1;
+
+select count(book_id), sum(if(year < 1950,1,0)) as '<1950' from books;
+
+
+select  nationality, count(book_id), 
+sum(if(year < 1950,1,0)) as '<1950',
+sum(if(year < 1950, 0,1)) as '>=1950'
+from books as b
+join authors as a
+on a.author_id = b.author_id
+where a.nationality is not null
+group by nationality
+;
+
+
+select  nationality, count(book_id) as cuenta, 
+sum(if(year < 1950,1,0)) as '<1950',
+sum(if(year < 1950, 0,1)) as '>=1950'
+from books as b
+join authors as a
+on a.author_id = b.author_id
+where a.nationality is not null
+group by nationality
+order by cuenta des
+;
